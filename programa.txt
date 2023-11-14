@@ -1,0 +1,6 @@
+inicio
+escribir(2-3, 2+6);
+holac:=20;
+variable1:=20;
+fin
+FDT
