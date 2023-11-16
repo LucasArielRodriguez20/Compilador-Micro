@@ -18,7 +18,7 @@ y.tab.c:
 lex.yy.c:
 	flex Scanner.l
 
-y.tab.o: lex.yy.c y.tab.c 
+y.tab.o:lex.yy.c y.tab.c estructura.h
 	$(CC) -c y.tab.c lex.yy.c $(CFLAGS)
 
 clean:

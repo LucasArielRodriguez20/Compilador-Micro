@@ -1,5 +1,7 @@
 # Sintaxis y Semántica de los lenguajes: Trabajo Practico "Compilador lenguaje Micro"
 
+-En este repositorio se puede encontrar un compilador del lenguaje micro construido con las herramientas flex y bison. Flex se utilizó para el armado del scanner del compilador y Bison para el parser ascendente del mismo. Además, se encuentran programadas varias rutinas semánticas en c.
+
 ## Descripcion del lenguaje micro
 
 - El único tipo de dato es entero.
@@ -14,7 +16,11 @@ programa está delimitado por inicio y fin
 - inicio, fin, leer y escribir son palabras reservadas y deben
 escribirse en minúscula.
 
+## Gramática léxica de micro
+
 ![Gramática Léxica](image.png)
+
+## Gramática Sintáctica de micro
 
 ![Gramática sintáctica](image-1.png)
 

@@ -390,13 +390,12 @@ static char *yy_last_accepting_cpos;
 char *yytext;
 #line 1 "Scanner.l"
 #define INITIAL 0
-#line 4 "Scanner.l"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#line 3 "Scanner.l"
 #include "./y.tab.h"
 void verificarLongitudId(int);
-#line 400 "lex.yy.c"
+char *strdup();
+int fileno(FILE*);
+#line 399 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -547,9 +546,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 13 "Scanner.l"
+#line 11 "Scanner.l"
 
-#line 553 "lex.yy.c"
+#line 552 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -634,90 +633,90 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 14 "Scanner.l"
+#line 12 "Scanner.l"
 {return INICIO;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 15 "Scanner.l"
+#line 13 "Scanner.l"
 {return FIN;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 16 "Scanner.l"
+#line 14 "Scanner.l"
 {return LEER;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 17 "Scanner.l"
+#line 15 "Scanner.l"
 {return ESCRIBIR;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 18 "Scanner.l"
+#line 16 "Scanner.l"
 {return PARENTESISIZQ;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 19 "Scanner.l"
+#line 17 "Scanner.l"
 {return PARENTESISDER;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 20 "Scanner.l"
+#line 18 "Scanner.l"
 {return PUNTOYCOMA;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 21 "Scanner.l"
+#line 19 "Scanner.l"
 {return COMA;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 22 "Scanner.l"
+#line 20 "Scanner.l"
 {return ASIGNACION;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 23 "Scanner.l"
+#line 21 "Scanner.l"
 {return SUMA;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 24 "Scanner.l"
+#line 22 "Scanner.l"
 {return RESTA;} 
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 25 "Scanner.l"
+#line 23 "Scanner.l"
 {return FDT;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 26 "Scanner.l"
+#line 24 "Scanner.l"
 {yylval.num=atoi(yytext);return CONSTANTE;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 27 "Scanner.l"
-{yylval.elemento.nombre=yytext;verificarLongitudId(yyleng);return IDENTIFICADOR;}
+#line 25 "Scanner.l"
+{yylval.palabra=strdup(yytext);verificarLongitudId(yyleng);return IDENTIFICADOR;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 28 "Scanner.l"
+#line 26 "Scanner.l"
 {} 
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 29 "Scanner.l"
+#line 27 "Scanner.l"
 {printf("Error el simbolo %s no pertenece al lenguaje\n",yytext);exit(0);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 30 "Scanner.l"
+#line 28 "Scanner.l"
 ECHO;
 	YY_BREAK
-#line 721 "lex.yy.c"
+#line 720 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1603,7 +1602,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 30 "Scanner.l"
+#line 28 "Scanner.l"
 
 
 void verificarLongitudId(int longitudID)

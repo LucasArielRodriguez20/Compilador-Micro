@@ -79,17 +79,15 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 22 "parser.y"
+#line 11 "parser.y"
 
     char *palabra;
     int num;
-    int exp;
-    id elemento;
 
 
 
 /* Line 1676 of yacc.c  */
-#line 93 "y.tab.h"
+#line 91 "y.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

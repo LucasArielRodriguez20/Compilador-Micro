@@ -70,26 +70,15 @@
 /* Line 189 of yacc.c  */
 #line 1 "parser.y"
 
-#include <stdio.h>
+#include "estructura.h"
 #include <stdlib.h>
-#include <math.h>
-#include <string.h>
-extern char *yytext;
-extern int yyleng;
 extern int yylex(void);
 extern void yyerror(char*);
-
-int tablaReservada(char*);
-
-typedef struct id{
-    int valor;
-    char *nombre;
-}tablaSimbolos[30];
 
 
 
 /* Line 189 of yacc.c  */
-#line 93 "y.tab.c"
+#line 82 "y.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -156,17 +145,15 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 22 "parser.y"
+#line 11 "parser.y"
 
     char *palabra;
     int num;
-    int exp;
-    id elemento;
 
 
 
 /* Line 214 of yacc.c  */
-#line 170 "y.tab.c"
+#line 157 "y.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -178,7 +165,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 182 "y.tab.c"
+#line 169 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -468,8 +455,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    34,    34,    37,    40,    41,    44,    45,    46,    49,
-      50,    53,    54,    57,    58,    59,    62,    63,    64
+       0,    20,    20,    23,    26,    27,    30,    42,    50,    59,
+      60,    63,    64,    67,    68,    69,    72,    73,    83
 };
 #endif
 
@@ -1386,84 +1373,138 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 34 "parser.y"
+#line 20 "parser.y"
     {printf("Fin del programa");return 0;}
     break;
 
   case 6:
 
 /* Line 1455 of yacc.c  */
-#line 44 "parser.y"
-    {printf("el identificador %s se le asigna el valor %d\n"),(yyvsp[(1) - (4)].elemento).nombre,(yyvsp[(3) - (4)].exp);}
+#line 30 "parser.y"
+    {cont=cargarPalabrasReservadas(cont);
+                                                        if(verificar((yyvsp[(1) - (4)].palabra),cont))
+                                                        {
+                                                        guardar((yyvsp[(1) - (4)].palabra),(yyvsp[(3) - (4)].num),++cont);
+                                                        printf("Se guardo con exito %d en el ID %s\n",(yyvsp[(3) - (4)].num),(yyvsp[(1) - (4)].palabra));
+                                                        }
+                                                        else
+                                                        {
+                                                        printf("Error el identificador %s ya esta en uso o es una palabra resevada\n",(yyvsp[(1) - (4)].palabra));
+                                                        exit(0);
+                                                        };
+                                                        }
     break;
 
   case 7:
 
 /* Line 1455 of yacc.c  */
-#line 45 "parser.y"
-    {printf("leer\n");}
+#line 42 "parser.y"
+    {if(argumentosLeer>1)
+                                                        {
+                                                        printf("Error leer solo funciona con un solo argumento");
+                                                         exit(0);
+                                                        };
+                                                        argumentosLeer=0;
+                                                        printf("Leo el argumento %s\n",(yyvsp[(3) - (5)].palabra));
+                                                        }
     break;
 
   case 8:
 
 /* Line 1455 of yacc.c  */
-#line 46 "parser.y"
-    {printf("el resultado de la operacion es %d\n",(yyvsp[(3) - (5)].exp));}
+#line 50 "parser.y"
+    {if(argumentosEscribir>1)
+                                                                    {
+                                                                    printf("Error escribir funciona solo con un solo argumento ala vez");
+                                                                    exit(0);
+                                                                    };
+                                                                    printf("El resultado de los argumentos en escribir es %d\n",(yyvsp[(3) - (5)].num));argumentosEscribir=0;
+                                                                    }
+    break;
+
+  case 9:
+
+/* Line 1455 of yacc.c  */
+#line 59 "parser.y"
+    {argumentosLeer++;(yyval.palabra)=(yyvsp[(1) - (1)].palabra);}
+    break;
+
+  case 10:
+
+/* Line 1455 of yacc.c  */
+#line 60 "parser.y"
+    {argumentosLeer++;(yyval.palabra)=(yyvsp[(1) - (3)].palabra);}
     break;
 
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 53 "parser.y"
-    {(yyval.exp)=(yyvsp[(1) - (1)].exp);}
+#line 63 "parser.y"
+    {(yyval.num)=(yyvsp[(1) - (1)].num);argumentosEscribir++;}
+    break;
+
+  case 12:
+
+/* Line 1455 of yacc.c  */
+#line 64 "parser.y"
+    {argumentosEscribir++;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 57 "parser.y"
-    {(yyval.exp)=(yyvsp[(1) - (1)].exp);}
+#line 67 "parser.y"
+    {(yyval.num)=(yyvsp[(1) - (1)].num);}
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 58 "parser.y"
-    {(yyval.exp)=(yyvsp[(1) - (3)].exp)-(yyvsp[(3) - (3)].exp);}
+#line 68 "parser.y"
+    {(yyval.num)=(yyvsp[(1) - (3)].num)-(yyvsp[(3) - (3)].num);}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 59 "parser.y"
-    {(yyval.exp)=(yyvsp[(1) - (3)].exp)+(yyvsp[(3) - (3)].exp);}
+#line 69 "parser.y"
+    {(yyval.num)=(yyvsp[(1) - (3)].num)+(yyvsp[(3) - (3)].num);}
     break;
 
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 62 "parser.y"
-    {printf("constante %d\n",(yyvsp[(1) - (1)].num));(yyval.exp)=(yyvsp[(1) - (1)].num);}
+#line 72 "parser.y"
+    {(yyval.num)=(yyvsp[(1) - (1)].num);}
     break;
 
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 63 "parser.y"
-    {(yyval.exp)=(yyvsp[(1) - (1)].elemento).valor;}
+#line 73 "parser.y"
+    {if(!verificar((yyvsp[(1) - (1)].palabra),cont))
+                {
+                (yyval.num)=valorID((yyvsp[(1) - (1)].palabra),cont);
+                }
+                else
+                {
+                printf("Error el identificador %s no esta declarado",(yyvsp[(1) - (1)].palabra));
+                exit(0);
+                };
+                }
     break;
 
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 64 "parser.y"
-    {(yyval.exp)=(yyvsp[(2) - (3)].exp);}
+#line 83 "parser.y"
+    {(yyval.num)=(yyvsp[(2) - (3)].num);}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1467 "y.tab.c"
+#line 1508 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1675,26 +1716,16 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 67 "parser.y"
+#line 86 "parser.y"
 
 
-int main(){
+int main()
+{
     yyparse();
     return 0;
 }
 
-void yyerror(char* p){
-    while(*p)
-    {
-      printf("%c",*p);
-      p++; 
-    }   
-}
-
-int tablaReservada(char*palabra)
+void yyerror(char* p)
 {
-    if(!strcmp(palabra,"leer")||!strcmp(palabra,"escribir")||
-    !strcmp(palabra,"fin")||!strcmp(palabra,"inicio"))
-        return 0;
-    return 1; 
+    fprintf(stderr, "Error semantico: %s\n",p);
 }

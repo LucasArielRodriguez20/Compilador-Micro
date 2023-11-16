@@ -1,6 +1,9 @@
 inicio
-escribir(2-3, 2+6);
-holac:=20;
-variable1:=20;
+escribir(2-1);
+variable1:=1;
+variable2:=2;
+escribir(variable1+variable2);
+leer(ejemploDeArgumento);
+escribir(var-var2);
 fin
 FDT
