@@ -1,0 +1,5 @@
+inicio
+a:=2;
+leer(leer);
+fin
+FDT

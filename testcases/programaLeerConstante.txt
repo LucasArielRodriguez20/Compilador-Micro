@@ -1,0 +1,5 @@
+inicio
+variable1:=1;
+leer(2);
+fin
+FDT

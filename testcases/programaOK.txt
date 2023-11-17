@@ -1,0 +1,8 @@
+inicio
+escribir(2-1);
+variable1:=1;
+variable2:=2;
+escribir(variable1+variable2,2);
+leer(ejemplo1, ejemplo2,ejemplo3);
+fin
+FDT

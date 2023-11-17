@@ -1,9 +1,8 @@
 %option noyywrap
 %{
 #include "./y.tab.h"
+#include <string.h>
 void verificarLongitudId(int);///tipos 
-char *strdup();
-int fileno(FILE*);
 %}
 CONSTANTE      [0-9]+
 IDENTIFICADOR  [A-Za-z][A-Za-z0-9]*
@@ -22,7 +21,7 @@ IDENTIFICADOR  [A-Za-z][A-Za-z0-9]*
 "-" {return RESTA;} 
 "FDT" {return FDT;}
 {CONSTANTE} {yylval.num=atoi(yytext);return CONSTANTE;}
-{IDENTIFICADOR} {yylval.palabra=strdup(yytext);verificarLongitudId(yyleng);return IDENTIFICADOR;}
+{IDENTIFICADOR} {verificarLongitudId(yyleng);yylval.palabra=strdup(yytext);return IDENTIFICADOR;}
 \s|\n|\t|" " {} 
 . {printf("Error el simbolo %s no pertenece al lenguaje\n",yytext);exit(0);}
 %%

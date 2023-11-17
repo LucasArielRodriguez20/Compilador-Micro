@@ -2,46 +2,40 @@
 #define ESTRUCTURA_H
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 struct id{
     int valor;
     char *nombre;
 }tabla[20];
 int cont=0;
-int argumentosEscribir=0;
-int argumentosLeer=0;
-int verificar(char *,int);
-int cargarPalabrasReservadas(int);
+int existeID(char *,int);
+int cargarPalabrasReservadas();
 void guardar(char * ,int  , int );
-int valorID(char * ,int);
-int verificar(char *nombre,int posiciones)
+int valorID(int posicion);
+
+int existeID(char *nombre,int posiciones)
 {
-    
-    for(int cont=0;cont<=posiciones;cont++)
+    for(int i=0;i<=posiciones;i++)
     {
-        if(!strcmp(tabla[cont].nombre,nombre))
-            return 0;
+        if(!strcmp(tabla[i].nombre,nombre))
+            return i;
     }
-    return 1;
+    return 0;
 }
 
-int cargarPalabrasReservadas(int posicionesExistentes)
+int cargarPalabrasReservadas()
 {
-    if(posicionesExistentes == 0)
-    {
-        tabla[0].valor=0;
-        tabla[0].nombre="leer";
-        tabla[1].valor=0;
-        tabla[1].nombre="escribir";
-        tabla[2].valor=0;
-        tabla[2].nombre="inicio";
-        tabla[3].valor=0;
-        tabla[3].nombre="fin";
-        tabla[4].valor=0;
-        tabla[4].nombre="fdt";
-        printf("termino la carga de PR\n");
-        return 4;
-    }
-    return posicionesExistentes;
+    tabla[0].valor=0;
+    tabla[0].nombre="leer";
+    tabla[1].valor=0;
+    tabla[1].nombre="escribir";
+    tabla[2].valor=0;
+    tabla[2].nombre="inicio";
+    tabla[3].valor=0;
+    tabla[3].nombre="fin";
+    tabla[4].valor=0;
+    tabla[4].nombre="fdt";
+    return 4;
 }
 
 void guardar(char * nombre,int valor , int posicion)
@@ -50,13 +44,8 @@ void guardar(char * nombre,int valor , int posicion)
     tabla[posicion].valor=valor;
 }
 
-int valorID(char * nombre,int posiciones)
+int valorID(int posicion)
 {
-    for(int cont=0;cont<=posiciones;cont++)
-    {
-        if(!strcmp(tabla[cont].nombre,nombre))
-            return tabla[cont].valor;
-    }
-    return -1;
+    return tabla[posicion].valor;
 }
 #endif

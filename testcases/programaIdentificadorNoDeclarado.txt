@@ -1,0 +1,6 @@
+inicio
+variable2:=2;
+leer(ejemploDeArgumento);
+escribir(var);
+fin
+FDT

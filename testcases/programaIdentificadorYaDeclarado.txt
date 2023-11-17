@@ -1,0 +1,5 @@
+inicio
+a:=2;
+a:=5;
+fin
+FDT
