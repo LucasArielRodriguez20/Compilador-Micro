@@ -12,18 +12,19 @@ CC = gcc
 CFLAGS = -std=c18
 LFLAGS = -lm
 
+
 $(BIN): $(OBJ)	
 	$(CC) $(OBJ) -o $(BIN) $(CFLAGS) $(LFLAGS)
 
-test: $(BIN)
+test: $(BIN) 
 	$(ECHO) Programa micro valido:
 	$(BIN) < ./testcases/programaOK.txt
 	$(ECHO) -------------------------------------------------------------------------------
 	$(ECHO) Programa micro con identificador sin declarar:
 	$(BIN) < ./testcases/programaIdentificadorNoDeclarado.txt
 	$(ECHO) -------------------------------------------------------------------------------
-	$(ECHO) Programa micro leer identificador que es palabra reservada(Error bison):
-	$(BIN) < ./testcases/programaIdentificadorEsPalabraReservada.txt
+	$(ECHO)  Programa micro con identificador con longitud mayor a 32:
+	$(BIN) < ./testcases/programaIdentificadorMayorA32.txt
 	$(ECHO) -------------------------------------------------------------------------------
 	$(ECHO) Programa micro con simbolos no reconocidos:
 	$(BIN) < ./testcases/programaSimboloNoReconocido.txt
@@ -31,13 +32,13 @@ test: $(BIN)
 	$(ECHO) Programa micro con asignacion de una variable ya asignada:
 	$(BIN) < ./testcases/programaIdentificadorYaDeclarado.txt
 	$(ECHO) -------------------------------------------------------------------------------
-	$(ECHO) Programa micro con identificador con longitud mayor a 32:
-	$(BIN) < ./testcases/programaIdentificadorMayorA32.txt
+	$(ECHO) Programa micro leer identificador que es palabra reservada Error bison:
+	$(BIN) <  ./testcases/programaIdentificadorEsPalabraReservada.txt 
 	$(ECHO) -------------------------------------------------------------------------------
-	$(ECHO) Programa micro sentencia sin punto y coma(Error bison):
+	$(ECHO) Programa micro sentencia sin punto y coma Error bison:
 	$(BIN) < ./testcases/programaSentenciaSinPuntoYComa.txt
 	$(ECHO) -------------------------------------------------------------------------------
-	$(ECHO) Programa micro leer una contstante(Error bison):
+	$(ECHO) Programa micro leer una contstante Error bison:
 	$(BIN) < ./testcases/programaLeerConstante.txt
 
 all: $(BIN)
